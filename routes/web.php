@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['role:admin'])->prefix('admin')->group(function () {
     Route::get('/', [IndexController::class, 'index'])->name('admin.index');
+
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('admin.calendar.index');
 });
