@@ -14,8 +14,8 @@ class AddColumnsToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('surname')->after('name');
-            $table->string('phone')->after('surname');
+            $table->string('surname')->nullable()->after('name');
+            $table->string('phone')->nullable()->after('surname');
         });
     }
 
