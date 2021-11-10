@@ -24,6 +24,7 @@ class CreateRecordsTable extends Migration
             $table->integer('status');
             $table->boolean('all_day');
             $table->dateTime('start');
+            $table->dateTime('end');
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('service_id')->references('id')->on('services');

@@ -2,6 +2,24 @@
 
 @section('custom_css')
     <link rel="stylesheet" href="/plugins/fullcalendar/main.css">
+    <style>
+        .event {
+        //shared event css
+        }
+
+        .greenEvent {
+            background-color:#00FF00;
+        }
+
+        .redEvent {
+            background-color:#FF0000;
+        }
+
+        .hiddenevent{
+            font-size: 9px;
+        }
+
+    </style>
 @endsection
 
 @section('custom_js')
@@ -72,10 +90,12 @@
                     center: 'title',
                     right : 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
+                locale:'ru',
                 themeSystem: 'bootstrap',
+                eventDisplay: 'block',
                 //Random default events
                 events: [
-                    {
+                /*    {
                         title          : 'All Day Event',
                         start          : new Date(y, m, 1),
                         backgroundColor: '#f56954', //red
@@ -88,23 +108,22 @@
                         end            : new Date(y, m, d - 2),
                         backgroundColor: '#f39c12', //yellow
                         borderColor    : '#f39c12' //yellow
-                    },
+                    },*/
                     {
-                        title          : 'Meeting',
+                        title          : '',
                         start          : new Date(y, m, d, 10, 30),
                         allDay         : false,
-                        backgroundColor: '#0073b7', //Blue
-                        borderColor    : '#0073b7' //Blue
+                        className: ["event", "greenEvent"]
+
                     },
                     {
-                        title          : 'Lunch',
+                        title          : 'ВК',
                         start          : new Date(y, m, d, 12, 0),
                         end            : new Date(y, m, d, 14, 0),
                         allDay         : false,
-                        backgroundColor: '#00c0ef', //Info (aqua)
-                        borderColor    : '#00c0ef' //Info (aqua)
+                        className: ["event", "redEvent hiddenevent"],
                     },
-                    {
+           /*         {
                         title          : 'Birthday Party',
                         start          : new Date(y, m, d + 1, 19, 0),
                         end            : new Date(y, m, d + 1, 22, 30),
@@ -119,8 +138,14 @@
                         url            : 'https://www.google.com/',
                         backgroundColor: '#3c8dbc', //Primary (light-blue)
                         borderColor    : '#3c8dbc' //Primary (light-blue)
-                    }
+                    }*/
                 ],
+                eventTimeFormat: { // like '14:30:00'
+                    hour: '2-digit',
+                    minute: '2-digit',
+
+                    meridiem: false
+                },
                 editable  : true,
                 droppable : true, // this allows things to be dropped onto the calendar !!!
                 drop      : function(info) {
