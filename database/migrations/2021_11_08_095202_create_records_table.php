@@ -21,8 +21,8 @@ class CreateRecordsTable extends Migration
 
             $table->string('title');
             $table->text('comment')->nullable();
-            $table->integer('status');
-            $table->boolean('all_day');
+            $table->integer('status')->unsigned();
+            $table->boolean('all_day')->nullable();
             $table->dateTime('start');
             $table->dateTime('end');
 

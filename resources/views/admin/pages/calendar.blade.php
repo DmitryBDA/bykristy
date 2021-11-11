@@ -8,15 +8,25 @@
         }
 
         .greenEvent {
-            background-color:#00FF00;
+            background-color:#1d8b1d;
+        }
+
+        .yellowEvent {
+            background-color:#a7a739;
         }
 
         .redEvent {
-            background-color:#FF0000;
+            background-color:#bf0d0d;
+        }
+        .greyEvent {
+            background-color:grey;
         }
 
         .hiddenevent{
             font-size: 9px;
+        }
+        .fc-daygrid-block-event .fc-event-time{
+            font-weight: 400!important;
         }
 
     </style>
@@ -94,52 +104,7 @@
                 themeSystem: 'bootstrap',
                 eventDisplay: 'block',
                 //Random default events
-                events: [
-                /*    {
-                        title          : 'All Day Event',
-                        start          : new Date(y, m, 1),
-                        backgroundColor: '#f56954', //red
-                        borderColor    : '#f56954', //red
-                        allDay         : true
-                    },
-                    {
-                        title          : 'Long Event',
-                        start          : new Date(y, m, d - 5),
-                        end            : new Date(y, m, d - 2),
-                        backgroundColor: '#f39c12', //yellow
-                        borderColor    : '#f39c12' //yellow
-                    },*/
-                    {
-                        title          : '',
-                        start          : new Date(y, m, d, 10, 30),
-                        allDay         : false,
-                        className: ["event", "greenEvent"]
-
-                    },
-                    {
-                        title          : 'ВК',
-                        start          : new Date(y, m, d, 12, 0),
-                        end            : new Date(y, m, d, 14, 0),
-                        allDay         : false,
-                        className: ["event", "redEvent hiddenevent"],
-                    },
-           /*         {
-                        title          : 'Birthday Party',
-                        start          : new Date(y, m, d + 1, 19, 0),
-                        end            : new Date(y, m, d + 1, 22, 30),
-                        allDay         : false,
-                        backgroundColor: '#00a65a', //Success (green)
-                        borderColor    : '#00a65a' //Success (green)
-                    },
-                    {
-                        title          : 'Click for Google',
-                        start          : new Date(y, m, 28),
-                        end            : new Date(y, m, 29),
-                        url            : 'https://www.google.com/',
-                        backgroundColor: '#3c8dbc', //Primary (light-blue)
-                        borderColor    : '#3c8dbc' //Primary (light-blue)
-                    }*/
-                ],
+                events: "/admin/calendar/records",
                 eventTimeFormat: { // like '14:30:00'
                     hour: '2-digit',
                     minute: '2-digit',
