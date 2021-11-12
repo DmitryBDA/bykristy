@@ -75,7 +75,6 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-
     @yield('content')
 
     <footer class="main-footer">
@@ -99,6 +98,7 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script src="/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
     $.widget.bridge('uibutton', $.ui.button)
 </script>

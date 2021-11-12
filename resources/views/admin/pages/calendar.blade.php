@@ -119,6 +119,15 @@
                         // if so, remove the element from the "Draggable Events" list
                         info.draggedEl.parentNode.removeChild(info.draggedEl);
                     }
+                },
+                dateClick: function (date) {
+
+                    $('.btn-default').click()
+                },
+                eventClick: function (event) {
+
+                    console.log(event)
+
                 }
             });
 
@@ -262,6 +271,7 @@
             </div><!-- /.container-fluid -->
         </section>
         <!-- /.content -->
+        @include('admin.modal.add-records')
     </div>
     <!-- /.content-wrapper -->
 @endsection
