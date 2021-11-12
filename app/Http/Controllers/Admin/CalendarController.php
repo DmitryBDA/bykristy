@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Record;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
 class CalendarController extends Controller
@@ -34,5 +35,26 @@ class CalendarController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    public function createRecords(Request $request)
+    {
+
+        $arrTimeRecords = $request->timeRecords;
+
+        foreach ($arrTimeRecords as $Event) {
+
+            $date = $request->date . ' ' . $Event['value'];
+            $insertArr = [
+                'title' => '',
+                'start' => $date,
+                'end' => $date,
+                'status' => 1
+            ];
+            $event = Record::insert($insertArr);
+
+        }
+
+        return response()->json($event);
     }
 }

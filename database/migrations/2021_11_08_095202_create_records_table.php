@@ -19,7 +19,7 @@ class CreateRecordsTable extends Migration
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->bigInteger('service_id')->unsigned()->nullable();
 
-            $table->string('title');
+            $table->string('title')->nullable();
             $table->text('comment')->nullable();
             $table->integer('status')->unsigned();
             $table->boolean('all_day')->nullable();

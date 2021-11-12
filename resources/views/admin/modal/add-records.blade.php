@@ -8,15 +8,15 @@
                 </button>
             </div>
 
-            <form>
+            <form class="_form_add-records">
                 <div class="card-body">
-                    <div class="form-group">
+                    <div class="form-group _time_records">
                         <label>Время</label>
-                        <input type="time" class="form-control" value="00:00">
                     </div>
                 </div>
+
                 <div class="card-footer">
-                    <button class="btn btn-primary ml-0">Добавить еще</button>
+                    <button type="button" class="btn btn-primary ml-0 _add_more_record">Добавить еще</button>
                     <button type="submit" class="btn btn-primary mr-0">Сохранить</button>
                 </div>
             </form>
