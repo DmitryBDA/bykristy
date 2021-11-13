@@ -1,5 +1,5 @@
 
-<form class="form-horizontal" data-record-id="@isset($record){{$record->id}}@endisset">
+<form class="form-horizontal _form_for_record" data-record-id="@isset($record){{$record->id}}@endisset">
     <div class="card-body">
         @isset($record)
             <p>Выбранный день: {{ Date::parse($record->start)->format('j.m.Y (D)')}}</p>
@@ -68,7 +68,7 @@
         <div class="card-footer">
             @switch($record->status)
                 @case(1)
-                <button type="submit" class="btn btn-info">Записать</button> @break
+                <button type="submit" class="btn btn-info _add_user_on_record">Записать</button> @break
                 @case(2)
                 <button type="submit" class="btn btn-info">Подтвердить</button>
                 <button type="submit" class="btn btn-info">Отменить</button> @break

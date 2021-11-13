@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Record;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class CalendarController extends Controller
 {
@@ -77,6 +80,46 @@ class CalendarController extends Controller
         }
         $services = Service::all();
         return view('admin.modal.ajax.action-record', compact('record', 'services', 'moreRecords'))->render();
+
+    }
+
+    public function updateDataRecord(Request $request)
+    {
+        $arrDataForm = $request->dataForm;
+        $recordId = $request->recordId;
+
+
+
+        $arFio = explode(" ", $arrDataForm[2]['value']);
+        $surname = $arFio[0];
+        $name = $arFio[1];
+        $phone = $arrDataForm[3]['value'];
+        $phone = str_replace(['(', ')', " ", '-'],'', $phone );
+
+        $obUser = User::where('phone', $phone)->get()->first();
+
+        if(empty($obUser)){
+            $lastId = User::orderBy('id', 'desc')->get()->first()->id;
+            $lastId++;
+            $dataUser = [
+                'name' => $name,
+                'surname' => $surname,
+                'phone' => $phone,
+                'password' => Hash::make(Str::random(8)),
+                'email' => "user$lastId@user.com",
+            ];
+            $obUser = User::create($dataUser);
+        }
+        $userId = $obUser->id;
+
+        $data = [
+            'user_id' => $userId,
+            'service_id' => $arrDataForm[1]['value'],
+            'status' => 3
+        ];
+
+        $obRecord = Record::find($recordId);
+        $obRecord->update($data);
 
     }
 }

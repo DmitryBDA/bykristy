@@ -248,6 +248,26 @@ $(function () {
        }
    })
 
+    $(document).on('submit', '._form_for_record', function (e){
+        e.preventDefault()
+        let dataForm = $(this).serializeArray()
+        const recordId = $(this).attr('data-record-id')
+
+        $.ajax({
+            url: "/admin/calendar/update-data-record",
+            data: {
+                dataForm: dataForm,
+                recordId:recordId
+            },
+            type: "POST",
+            success: function (data) {
+                $('.close').click();
+                calendar.refetchEvents()
+            }
+        });
+
+    })
+
 })
 
 
