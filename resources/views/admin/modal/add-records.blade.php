@@ -24,6 +24,6 @@
         </div>
     </div>
 </div>
-<button style="display: none" id="_modal-add-records" type="button" class="btn btn-default" data-toggle="modal"
+<button style="display: none" id="_open_modal-add-records" type="button" class="btn btn-default" data-toggle="modal"
         data-target="#modal-add-records">open
 </button>

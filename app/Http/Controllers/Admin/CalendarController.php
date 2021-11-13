@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Record;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -57,5 +58,25 @@ class CalendarController extends Controller
         }
 
         return response()->json($event);
+    }
+
+    public function showActionRecord(Request $request)
+    {
+        $record = Record::with('user')->with('service')->find($request->recordId);
+
+        $moreRecords = null;
+
+        $userId = $record->user_id;
+        if($userId){
+            $tekDate = Carbon::today()->format('Y-m-d');
+            $eventList = Record::where('start', '>=', $tekDate)->where('user_id', $userId)->where('id', '!=',$record->id)->with('user')->orderBy('start', 'asc')->get();
+
+            if(isset($eventList) and $eventList->isNotEmpty() ){
+                $moreRecords = $eventList;
+            }
+        }
+        $services = Service::all();
+        return view('admin.modal.ajax.action-record', compact('record', 'services', 'moreRecords'))->render();
+
     }
 }

@@ -137,6 +137,8 @@
         </section>
         <!-- /.content -->
         @include('admin.modal.add-records')
+
+        @include('admin.modal.action-with-record')
     </div>
     <!-- /.content-wrapper -->
 @endsection

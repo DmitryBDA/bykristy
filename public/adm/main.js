@@ -85,6 +85,7 @@ $(function () {
             center: 'title',
             right : 'dayGridMonth,timeGridWeek,timeGridDay'
         },
+        firstDay: 1,
         locale:'ru',
         themeSystem: 'bootstrap',
         eventDisplay: 'block',
@@ -117,11 +118,28 @@ $(function () {
             $('._time_records').append(inputTimeRecord)
             $('._btn_save_records').attr('disabled', false)
 
-            $('.btn-default').click()
+            $('#_open_modal-add-records').click()
         },
         eventClick: function (event) {
 
-            console.log(event)
+            $.ajax({
+                url: "/admin/calendar/show-action-record",
+                type: "GET",
+                data: {
+                    recordId: event.event._def.publicId
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: (data) => {
+
+                    $('._form_action_record').html(data)
+                    $('[data-mask]').inputmask()
+                    $('#_open_modal-action-with-records').click()
+
+                }
+
+            })
 
         }
     });

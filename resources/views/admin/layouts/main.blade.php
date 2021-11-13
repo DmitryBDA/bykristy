@@ -110,6 +110,7 @@
 <script src="/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- overlayScrollbars -->
 <script src="/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.js"></script>
 <script src="/adm/main.js"></script>

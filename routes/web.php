@@ -30,5 +30,7 @@ Route::middleware(['role:admin'])->prefix('admin')->group(function () {
 
     Route::get('/calendar/records', [CalendarController::class, 'records'])->name('admin.calendar.records');
 
+    Route::get('/calendar/show-action-record', [CalendarController::class, 'showActionRecord'])->name('admin.calendar.action.record');
+
     Route::post('/calendar/create-records', [CalendarController::class, 'createRecords'])->name('admin.calendar.create.records');
 });
