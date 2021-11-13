@@ -44,15 +44,16 @@ class CalendarController extends Controller
 
         foreach ($arrTimeRecords as $Event) {
 
+            if(!$Event) continue;
+
             $date = $request->date . ' ' . $Event['value'];
-            $insertArr = [
-                'title' => '',
+            $arrData = [
+                'title' => isset($Event['title']) ? $Event['title']: '',
                 'start' => $date,
                 'end' => $date,
-                'status' => 1
+                'status' => isset($Event['status']) ? $Event['status']: 1
             ];
-            $event = Record::insert($insertArr);
-
+            $event = Record::create($arrData);
         }
 
         return response()->json($event);

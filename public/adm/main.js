@@ -7,6 +7,16 @@ $(function () {
         "                            </div>\n" +
         "                        </div>"
 
+    const inputMyselfTimeRecord = " <div class=\"form-group _myself_time_record\">\n" +
+        "                        <div class=\"input-group mb-3 \">\n" +
+        "                            <input type=\"time\" name=\"myself_time\" class=\"form-control\" value=\"00:00\">\n" +
+        "                            <input type=\"text\" name=\"myself_time\" class=\"form-control\">\n" +
+        "                            <div class=\"input-group-append\">\n" +
+        "                                <span class=\"input-group-text\"><i class=\"fas fa-times\"></i></span>\n" +
+        "                            </div>\n" +
+        "                        </div>\n" +
+        "                    </div>"
+
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -103,11 +113,11 @@ $(function () {
             $('._form_add-records').attr('data-click-date', clickDate)
 
             $('._time_record').remove()
+            $('._myself_time_record').remove()
             $('._time_records').append(inputTimeRecord)
+            $('._btn_save_records').attr('disabled', false)
 
             $('.btn-default').click()
-
-
         },
         eventClick: function (event) {
 
@@ -161,8 +171,27 @@ $(function () {
     $(document).on('submit', '._form_add-records', function (event){
         event.preventDefault()
         let timeRecords = $(this).serializeArray()
+
+        //Объединение двух input в один со значение времени и названия
+        let firstMyselfTime = false
+        for (let i=0; i < timeRecords.length; i++ ){
+            if(timeRecords[i]['name'] == 'myself_time' && firstMyselfTime == false){
+                firstMyselfTime = true
+                continue
+            }
+            if(firstMyselfTime){
+                let indexFirstMyself = i - 1;
+                timeRecords[indexFirstMyself]['title'] = timeRecords[i]['value']
+                timeRecords[indexFirstMyself]['status'] = 4
+                delete timeRecords[i];
+                firstMyselfTime = false
+            }
+        }
+
+        //Дата по которой клик был
         let date = $(this).attr('data-click-date')
-        console.log(date)
+
+        //Создание записей
         $.ajax({
             url: "/admin/calendar/create-records",
             data: {
@@ -181,12 +210,26 @@ $(function () {
     $(document).on('click', '._add_more_record', function (e){
         e.preventDefault()
         $('._time_records').append(inputTimeRecord)
+        $('._btn_save_records').attr('disabled', false)
+    })
+
+    //Добавить еще одно время для записи
+    $(document).on('click', '._add_myself_record', function (e){
+        e.preventDefault()
+        $('._time_records').append(inputMyselfTimeRecord)
+        $('._btn_save_records').attr('disabled', false)
     })
 
     //Удалить время для записи
    $(document).on('click', '.input-group-append', function (){
+       $(this).parent('.input-group').parent('._myself_time_record').remove()
        $(this).parent('._time_record').remove()
+
+       if($('._time_record').length == 0 && $('._myself_time_record').length == 0){
+            $('._btn_save_records').attr('disabled', '')
+       }
    })
+
 })
 
 

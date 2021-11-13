@@ -16,8 +16,9 @@
                 </div>
 
                 <div class="card-footer">
-                    <button type="button" class="btn btn-primary ml-0 _add_more_record">Добавить еще</button>
-                    <button type="submit" class="btn btn-primary mr-0">Сохранить</button>
+                    <button type="button" class="btn btn-primary ml-0 _add_more_record">Добавить</button>
+                    <button type="button" class="btn btn-primary ml-0 _add_myself_record">Личное</button>
+                    <button type="submit" class="btn btn-primary mr-0 _btn_save_records">Сохранить</button>
                 </div>
             </form>
         </div>
