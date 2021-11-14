@@ -21,6 +21,7 @@
     @yield('custom_css')
     <!-- Theme style -->
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="/adm/main.css">
 
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

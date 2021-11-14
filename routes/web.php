@@ -34,5 +34,7 @@ Route::middleware(['role:admin'])->prefix('admin')->group(function () {
 
     Route::post('/calendar/create-records', [CalendarController::class, 'createRecords'])->name('admin.calendar.create.records');
 
-    Route::post('/calendar/update-data-record', [CalendarController::class, 'updateDataRecord'])->name('admin.calendar.update.data.record');
+    Route::post('/calendar/record-user', [CalendarController::class, 'recordUser'])->name('admin.calendar.record.user');
+
+    Route::post('/calendar/action-record', [CalendarController::class, 'actionRecord'])->name('admin.calendar.action.record');
 });

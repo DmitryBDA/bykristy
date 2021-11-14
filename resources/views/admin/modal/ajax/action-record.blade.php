@@ -8,13 +8,13 @@
                 @if($record->status == 4)
                     <div class="input-group col-sm-10 mb-3 ">
                         <input type="time" name="myself_time" class="form-control"
-                               value="{{ Date::parse($record->start)->format('H:m')}}">
+                               value="{{ Date::parse($record->start)->format('H:i')}}">
                         <input type="text" name="myself_time" class="form-control" value="{{ $record->title }}">
                     </div>
                 @else
                     <div class="col-sm-10">
                         <input type="time" class="form-control" name="time"
-                               value="{{ Date::parse($record->start)->format('H:m')}}">
+                               value="{{ Date::parse($record->start)->format('H:i')}}">
                     </div>
                 @endif
 
@@ -56,7 +56,7 @@
                 <div class="col-sm-12">
                     <h5>Так же записан</h5>
                     @foreach($moreRecords as $item)
-                        <p>{{ Date::parse($item->start)->format('Дата: j.m.Y Время: H:m')}}</p>
+                        <p>{{ Date::parse($item->start)->format('Дата: j.m.Y Время: H:i')}}</p>
                     @endforeach
                 </div>
             @endisset
@@ -70,13 +70,13 @@
                 @case(1)
                 <button type="submit" class="btn btn-info _add_user_on_record">Записать</button> @break
                 @case(2)
-                <button type="submit" class="btn btn-info">Подтвердить</button>
-                <button type="submit" class="btn btn-info">Отменить</button> @break
+                <button data-record-id="{{$record->id}}" type="button" class="btn btn-info _confirm_record">Подтвердить</button>
+                <button data-record-id="{{$record->id}}" type="button" class="btn btn-info _close_record">Отменить</button> @break
                 @case(3)
-                <button type="submit" class="btn btn-info">Отменить</button> @break
+                <button data-record-id="{{$record->id}}" type="button" class="btn btn-info _close_record">Отменить</button> @break
             @endswitch
-            <button type="button" class="btn btn-danger float-right">Удалить</button>
+            <button data-record-id="{{$record->id}}" type="button" class="btn btn-danger float-right _delete_record">Удалить</button>
         </div>
-@endisset
+    @endisset
 <!-- /.card-footer -->
 </form>

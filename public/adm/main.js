@@ -254,7 +254,7 @@ $(function () {
         const recordId = $(this).attr('data-record-id')
 
         $.ajax({
-            url: "/admin/calendar/update-data-record",
+            url: "/admin/calendar/record-user",
             data: {
                 dataForm: dataForm,
                 recordId:recordId
@@ -267,6 +267,36 @@ $(function () {
         });
 
     })
+
+    $(document).on('click', '._delete_record, ._confirm_record, ._close_record', function (e){
+        e.preventDefault();
+        let typeAction = null;
+
+        if($(this).hasClass('_delete_record')) typeAction = 'delete'
+        if($(this).hasClass('_confirm_record')) typeAction = 'confirm'
+        if($(this).hasClass('_close_record')) typeAction = 'close'
+
+        var recordId = $(this).attr('data-record-id');
+
+        $.ajax({
+            type: "POST",
+            url: '/admin/calendar/action-record',
+            data: {
+                recordId: recordId,
+                type: typeAction
+            },
+            success: function (response) {
+                if(response)
+                {
+                    calendar.refetchEvents()
+                    $('.close').click();
+                }
+
+            }
+        });
+    })
+
+
 
 })
 

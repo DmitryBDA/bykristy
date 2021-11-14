@@ -83,7 +83,7 @@ class CalendarController extends Controller
 
     }
 
-    public function updateDataRecord(Request $request)
+    public function recordUser(Request $request)
     {
         $arrDataForm = $request->dataForm;
         $recordId = $request->recordId;
@@ -121,5 +121,39 @@ class CalendarController extends Controller
         $obRecord = Record::find($recordId);
         $obRecord->update($data);
 
+    }
+
+    public function actionRecord(Request $request)
+    {
+        switch ($request->type) {
+
+            case 'confirm':
+
+                $dataUpdate = [
+                    'status' => 3,
+                ];
+
+                $record = Record::find($request->recordId)->update($dataUpdate);
+
+                return response()->json($record);
+                break;
+
+            case 'close':
+
+                $record = Record::find($request->recordId)->update([
+                    'status' => 1,
+                    'user_id' => null,
+                    'service_id' => null,
+                ]);
+
+                return response()->json($record);
+                break;
+
+            case 'delete':
+
+                $record = Record::find($request->recordId)->delete();
+                return response()->json($record);
+                break;
+        }
     }
 }

@@ -1,0 +1,6 @@
+
+@media (max-width: 576px) {
+    .form-group{
+        margin-bottom: 0!important;
+    }
+}
