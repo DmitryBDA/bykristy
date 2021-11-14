@@ -141,6 +141,20 @@ $(function () {
 
             })
 
+        },
+        eventDrop:function (event){
+
+            $.ajax({
+                url: '/admin/calendar/update-date-record',
+                data: {
+                    newDate: moment(event.event._instance.range.start).format("Y-MM-DD"),
+                    id: event.oldEvent._def.publicId,
+                },
+                type: "POST",
+                success: function (response) {
+
+                }
+            });
         }
     });
 

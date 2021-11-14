@@ -156,4 +156,9 @@ class CalendarController extends Controller
                 break;
         }
     }
+
+    public function updateDateRecord()
+    {
+
+    }
 }
