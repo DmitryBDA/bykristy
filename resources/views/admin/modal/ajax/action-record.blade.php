@@ -46,7 +46,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Телефон</label>
                     <div class="col-sm-10">
-                        <input type="text" name="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"'
+                        <input type="text" name="phone" class="form-control _paste_phone_auto" data-inputmask='"mask": "(999) 999-9999"'
                                data-mask inputmode="text"
                                value="@if($record->user){{$record->user->phone}}@endif">
                     </div>

@@ -41,4 +41,6 @@ Route::middleware(['role:admin'])->prefix('admin')->group(function () {
     Route::post('/calendar/update-date-record', [CalendarController::class, 'updateDateRecord'])->name('admin.calendar.update.date.record');
 
     Route::get('/calendar/autocomplete',[CalendarController::class, 'autocompletionInput'])->name('admin.calendar.autocompletionInput');
+
+    Route::post('/calendar/search-phone',[CalendarController::class, 'searchPhone'])->name('admin.calendar.search.phone');
 });

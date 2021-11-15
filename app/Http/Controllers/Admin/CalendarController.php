@@ -177,10 +177,29 @@ class CalendarController extends Controller
             ->get();
 
         $arr = [];
-        foreach ($result as $item)
-        {
-            $arr[]['name'] =  $item->surname . ' ' . $item->name;
+        if(!$result->isEmpty()){
+            foreach ($result as $item)
+            {
+                $arr[]['name'] =  $item->surname . ' ' . $item->name;
+            }
+        } else {
+            $arr[]['name'] = '';
         }
+
         return response()->json($arr);
+    }
+
+    public function searchPhone(Request $request){
+        $name = $request->name;
+        $arrNameAndSurname = explode(' ', $name);
+        if(count($arrNameAndSurname) == 2){
+            $result = User::select('phone')->where('surname', $arrNameAndSurname[0])->where('name', $arrNameAndSurname[1])->get();
+
+            if($result->count() == 1){
+                return response()->json($result->first()->phone);
+            } else {
+                return response()->json('error');
+            }
+        }
     }
 }

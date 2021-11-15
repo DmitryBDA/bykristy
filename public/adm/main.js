@@ -314,6 +314,28 @@ $(function () {
         });
     })
 
+    $(document).on('focusout', '.add_name', function (){
+        const name = $(this).val()
+
+
+        $.ajax({
+            url: "/admin/calendar/search-phone",
+            type: "post",
+            data: {
+                name: name,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: (data) => {
+                if(data != 'error'){
+                    $('._paste_phone_auto').val(data);
+                }
+
+            }
+        })
+
+    })
 
 })
 
