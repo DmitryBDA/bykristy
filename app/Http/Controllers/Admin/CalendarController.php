@@ -168,4 +168,15 @@ class CalendarController extends Controller
         return response()->json($obRecord);
 
     }
+
+    public function autocompletionInput(Request $request)
+    {
+        $result = User::select('name', 'surname')->where('name', 'LIKE', "%{$request->input('query')}%")->get();
+        $arr = [];
+        foreach ($result as $item)
+        {
+            $arr[]['name'] = $item->name . ' ' . $item->surname;
+        }
+        return response()->json($arr);
+    }
 }
