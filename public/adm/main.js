@@ -136,10 +136,11 @@ $(function () {
                 },
                 success: (data) => {
 
-                    autocompletename()
+
                     $('._form_action_record').html(data)
                     $('[data-mask]').inputmask()
                     $('#_open_modal-action-with-records').click()
+                    autocompletename()
 
                 }
 

@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Имя</label>
                     <div class="col-sm-10">
-                        <input id="#add_name" type="text" class="form-control" name="name"
+                        <input  type="text" class="form-control add_name" name="name" autocomplete="off"
                                value="@if($record->user){{$record->user->surname}} {{$record->user->name}}@endif">
                     </div>
                 </div>

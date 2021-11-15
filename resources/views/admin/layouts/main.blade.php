@@ -114,15 +114,12 @@
 <script src="/plugins/inputmask/jquery.inputmask.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/dist/js/adminlte.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js"></script>
-<script src="/adm/main.js"></script>
-@yield('custom_js')
+<script src="/adm/typeahead.js"></script>
 <script type="text/javascript">
 
     const autocompletename = () => {
         var path = "{{ route('admin.calendar.autocompletionInput') }}";
-        console.log(path)
-            $('#add_name').typeahead({
+        $('.add_name').typeahead({
             minLength: 2,
             source:  function (query, process) {
                 return $.get(path, { query: query }, function (data) {
@@ -132,5 +129,9 @@
         });
     }
 </script>
+<script src="/adm/main.js"></script>
+
+@yield('custom_js')
+
 </body>
 </html>
