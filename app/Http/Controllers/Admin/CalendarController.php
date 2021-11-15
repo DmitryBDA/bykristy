@@ -157,8 +157,22 @@ class CalendarController extends Controller
         }
     }
 
-    public function updateDateRecord()
+    public function updateDateRecord(Request $request)
     {
+
+        $recordId = $request->recordId;
+
+
+        $newDate = Carbon::create($request->newDate)->format('Y-m-d');
+        $obRecord = Record::find($recordId);
+        $time = Carbon::create($obRecord->start)->format('H:i');
+
+        $strNewDate = $newDate . ' ' . $time;
+        $qwenewDate = Carbon::create($strNewDate)->format('Y-m-d H:i');
+
+        $updateArr = ['start' => $qwenewDate, 'end' => $qwenewDate];
+        $obRecord->update($updateArr);
+        return response()->json($obRecord);
 
     }
 }
