@@ -85,10 +85,12 @@ $(function () {
             center: 'title',
             right : 'dayGridMonth,timeGridWeek,timeGridDay'
         },
+        timeZone: 'UTC',
         firstDay: 1,
         locale:'ru',
         themeSystem: 'bootstrap',
         eventDisplay: 'block',
+        nextDayThreshold: '00:00:00',
         //Random default events
         events: "/admin/calendar/records",
         eventTimeFormat: { // like '14:30:00'
@@ -98,6 +100,7 @@ $(function () {
             meridiem: false
         },
         editable  : true,
+        selectable: true,
         droppable : true, // this allows things to be dropped onto the calendar !!!
         drop      : function(info) {
             // is the "remove after drop" checkbox checked?
@@ -143,7 +146,6 @@ $(function () {
 
         },
         eventDrop:function (event){
-            console.log(event)
             $.ajax({
                 url: '/admin/calendar/update-date-record',
                 data: {
