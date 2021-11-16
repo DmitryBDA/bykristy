@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker.css">
     @yield('custom_css')
     <!-- Theme style -->
+    <link rel="stylesheet" href="/adm/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="/adm/main.css">
 
