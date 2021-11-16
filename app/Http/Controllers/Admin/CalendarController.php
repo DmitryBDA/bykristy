@@ -81,7 +81,7 @@ class CalendarController extends Controller
         $arrDataForm = $request->dataForm;
         $recordId = $request->recordId;
 
-
+        $TimeRecord = $arrDataForm[0]['value'];
 
         $arFio = explode(" ", $arrDataForm[2]['value']);
         $surname = $arFio[0];
@@ -105,13 +105,18 @@ class CalendarController extends Controller
         }
         $userId = $obUser->id;
 
+        $obRecord = Record::find($recordId);
+
+        $date = Carbon::create($obRecord->start)->format('Y-m-d') . ' ' . $TimeRecord;
         $data = [
+            'start' => $date,
+            'end' => $date,
             'user_id' => $userId,
             'service_id' => $arrDataForm[1]['value'],
-            'status' => 3
+            'status' => $obRecord->status == 1 ? 3: $obRecord->status,
         ];
 
-        $obRecord = Record::find($recordId);
+
         $obRecord->update($data);
 
     }

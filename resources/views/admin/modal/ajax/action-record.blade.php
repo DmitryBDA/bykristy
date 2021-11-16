@@ -7,13 +7,13 @@
                 <label class="col-sm-2 col-form-label">Время</label>
                 @if($record->status == 4)
                     <div class="input-group col-sm-10 mb-3 ">
-                        <input type="time" name="myself_time" class="form-control"
+                        <input type="time" name="myself_time" class="form-control _input_form_for_record"
                                value="{{ Date::parse($record->start)->format('H:i')}}">
                         <input type="text" name="myself_time" class="form-control" value="{{ $record->title }}">
                     </div>
                 @else
                     <div class="col-sm-10">
-                        <input type="time" class="form-control" name="time"
+                        <input type="time" class="form-control _input_form_for_record" name="time"
                                value="{{ Date::parse($record->start)->format('H:i')}}">
                     </div>
                 @endif
@@ -25,7 +25,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Услуга</label>
                     <div class="col-sm-10">
-                        <select name="service" class="form-control" required="">
+                        <select name="service" class="form-control _input_form_for_record" required="">
                             <option value="" selected="">Не выбрано</option>
                             @isset($services)
                                 @foreach($services as $service)
@@ -39,7 +39,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Имя</label>
                     <div class="col-sm-10">
-                        <input  type="text" class="form-control add_name" name="name" autocomplete="off"
+                        <input  type="text" class="form-control add_name _input_form_for_record" name="name" autocomplete="off"
                                value="@if($record->user){{$record->user->surname}} {{$record->user->name}}@endif">
                     </div>
                 </div>
@@ -47,7 +47,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Телефон</label>
                     <div class="input-group mb-3 col-sm-10">
-                        <input type="text" name="phone" class="form-control _paste_phone_auto" data-inputmask='"mask": "(999) 999-9999"'
+                        <input type="text" name="phone" class="form-control _paste_phone_auto _input_form_for_record" data-inputmask='"mask": "(999) 999-9999"'
                                data-mask inputmode="text"
                                value="@if($record->user){{$record->user->phone}}@endif">
                         @if($record->user)
@@ -84,6 +84,7 @@
                 @case(3)
                 <button data-record-id="{{$record->id}}" type="button" class="btn btn-info _close_record">Отменить</button> @break
             @endswitch
+                <button style="display: none" data-record-id="{{$record->id}}" type="submit" class="btn btn-success float-center _save_change_record">Сохранить</button>
             <button data-record-id="{{$record->id}}" type="button" class="btn btn-danger float-right _delete_record">Удалить</button>
         </div>
     @endisset

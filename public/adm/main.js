@@ -314,6 +314,13 @@ $(function () {
         });
     })
 
+
+
+    $(document).on('change', '._input_form_for_record', function (){
+        $('._save_change_record').css('display', 'inline')
+    })
+
+    // Заполнение телефона на основании введенного имени
     $(document).on('focusout', '.add_name', function (){
         const name = $(this).val()
 
@@ -337,6 +344,34 @@ $(function () {
 
     })
 
+    //Еще одно Заполнение телефона на основании введенного имени
+    var typingTimer;                //timer identifier
+    var doneTypingInterval = 2000;  //time in ms (5 seconds)
+    $(document).on('keyup', '.add_name', function (){
+        clearTimeout(typingTimer);
+        if ($('.add_name').val()) {
+            typingTimer = setTimeout(doneTyping, doneTypingInterval);
+        }
+    })
+    function doneTyping () {
+        const name = $('.add_name').val()
+        $.ajax({
+            url: "/admin/calendar/search-phone",
+            type: "post",
+            data: {
+                name: name,
+            },
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: (data) => {
+                if(data != 'error'){
+                    $('._paste_phone_auto').val(data);
+                }
+
+            }
+        })
+    }
 })
 
 
