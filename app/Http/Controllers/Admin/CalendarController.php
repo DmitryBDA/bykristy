@@ -176,19 +176,22 @@ class CalendarController extends Controller
 
     public function autocompletionInput(Request $request)
     {
-        $result = User::select('name', 'surname')
-            ->where('name', 'LIKE', "%{$request->input('query')}%")
-            ->orWhere('surname', 'LIKE', "%{$request->input('query')}%")
-            ->get();
-
+        $strSearch = $request->input('query');
+        $countWords = count(preg_split('/\s+/u', $strSearch, null, PREG_SPLIT_NO_EMPTY));
         $arr = [];
-        if(!$result->isEmpty()){
-            foreach ($result as $item)
-            {
-                $arr[]['name'] =  $item->surname . ' ' . $item->name;
+        if($countWords == 1){
+            $result = User::select('name', 'surname')
+                ->where('name', 'LIKE', "%{$request->input('query')}%")
+                ->orWhere('surname', 'LIKE', "%{$request->input('query')}%")
+                ->get();
+            if(!$result->isEmpty()){
+                foreach ($result as $item)
+                {
+                    $arr[]['name'] =  $item->surname . ' ' . $item->name;
+                }
+            } else {
+                $arr[]['name'] = '';
             }
-        } else {
-            $arr[]['name'] = '';
         }
 
         return response()->json($arr);
