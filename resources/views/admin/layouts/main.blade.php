@@ -25,7 +25,8 @@
     <link rel="stylesheet" href="/adm/main.css">
 
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<div class="wrapper" id="app">
+
 
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
@@ -97,7 +98,7 @@
     <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<script src="{{mix('js/app.js')}}"></script>
 <!-- jQuery -->
 <script src="/plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -131,6 +132,7 @@
     }
 </script>
 <script src="/adm/main.js"></script>
+
 
 @yield('custom_js')
 

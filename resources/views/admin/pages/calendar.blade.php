@@ -135,8 +135,9 @@
                 <!-- /.row -->
             </div><!-- /.container-fluid -->
         </section>
+        <modal-action-record></modal-action-record>
         <!-- /.content -->
-        @include('admin.modal.add-records')
+{{--        @include('admin.modal.add-records')--}}
 
         @include('admin.modal.action-with-record')
     </div>

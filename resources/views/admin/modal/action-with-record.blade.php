@@ -7,7 +7,6 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="_form_action_record">
                 @include('admin.modal.ajax.action-record')
             </div>
