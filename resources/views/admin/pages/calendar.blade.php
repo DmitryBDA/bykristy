@@ -72,51 +72,12 @@
                                 </div>
                                 <div class="card-body">
                                     <!-- the events -->
-                                    <div id="external-events">
-                                        <div class="external-event bg-success">Lunch</div>
-                                        <div class="external-event bg-warning">Go home</div>
-                                        <div class="external-event bg-info">Do homework</div>
-                                        <div class="external-event bg-primary">Work on UI design</div>
-                                        <div class="external-event bg-danger">Sleep tight</div>
-                                        <div class="checkbox">
-                                            <label for="drop-remove">
-                                                <input type="checkbox" id="drop-remove">
-                                                remove after drop
-                                            </label>
-                                        </div>
-                                    </div>
+                                    <div id="external-events"></div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
                             <!-- /.card -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Create Event</h3>
-                                </div>
-                                <div class="card-body">
-                                    <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
-                                        <ul class="fc-color-picker" id="color-chooser">
-                                            <li><a class="text-primary" href="#"><i class="fas fa-square"></i></a></li>
-                                            <li><a class="text-warning" href="#"><i class="fas fa-square"></i></a></li>
-                                            <li><a class="text-success" href="#"><i class="fas fa-square"></i></a></li>
-                                            <li><a class="text-danger" href="#"><i class="fas fa-square"></i></a></li>
-                                            <li><a class="text-muted" href="#"><i class="fas fa-square"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- /btn-group -->
-                                    <div class="input-group">
-                                        <input id="new-event" type="text" class="form-control"
-                                               placeholder="Event Title">
-
-                                        <div class="input-group-append">
-                                            <button id="add-new-event" type="button" class="btn btn-primary">Add
-                                            </button>
-                                        </div>
-                                        <!-- /btn-group -->
-                                    </div>
-                                    <!-- /input-group -->
-                                </div>
-                            </div>
+                            <div class="card"></div>
                         </div>
                     </div>
                     <!-- /.col -->
@@ -128,9 +89,44 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+
+
                         <!-- /.card -->
                     </div>
-                    <!-- /.col -->
+
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div style="width: 100%;height: 49px;" class="btn-group-vertical">
+                                    <button id="eventsList" type="button" class="btn btn-default">Список дат</button>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="card card-info collapsed-card">
+                                    <div id="list_active_records" class="card-header">
+                                        <h3 class="card-title">Активные записи</h3>
+
+                                        <div class="card-tools _btn_collapse">
+                                            <button class="btn btn-tool " data-card-widget="collapse" title="Collapse">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body p-0">
+                                        <div class="form-group mt-2 mr-2 ml-2">
+                                            <input type="text" class="form-control _search_active_record"
+                                                   placeholder="Введите чтобы начать поиск">
+                                        </div>
+                                        <div class="_users_active_list_wrapper">
+                                            @include('admin.pages.calendar.ajax-elem.usersActiveList')
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->

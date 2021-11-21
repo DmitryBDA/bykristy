@@ -16,7 +16,7 @@ class RecordRepository extends CoreRepository
   /**
    * @return mixed
    */
-  public function getActiveRecords()
+  public function getRecords()
   {
       $tekDate = Carbon::today()->format('Y-m-d');
 
@@ -39,4 +39,16 @@ class RecordRepository extends CoreRepository
       }
       return $data;
   }
+
+    public function getActiveRecords()
+    {
+        $tekDate = Carbon::today()->format('Y-m-d');
+        $eventList = $this->startCondition()
+            ->where('status', '!=', 1)
+            ->where('start', '>=', $tekDate)
+            ->with('user')
+            ->orderBy('start', 'asc')
+            ->get();
+        return $eventList;
+    }
 }

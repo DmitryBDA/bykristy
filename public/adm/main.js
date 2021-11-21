@@ -81,9 +81,9 @@ $(function () {
 
     var calendar = new Calendar(calendarEl, {
         headerToolbar: {
-            left  : 'prev,next today',
+            left  : '',
             center: 'title',
-            right : 'dayGridMonth,timeGridWeek,timeGridDay'
+            right  : 'prev,next today',
         },
         timeZone: 'UTC',
         firstDay: 1,

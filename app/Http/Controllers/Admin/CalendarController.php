@@ -22,14 +22,17 @@ class CalendarController extends Controller
 
     public function index()
     {
-        return view('admin.pages.calendar');
+        //Получить все записи (события)
+        $eventList = $this->recordRepository->getActiveRecords();
+
+        return view('admin.pages.calendar', compact('eventList'));
     }
 
     public function records()
     {
         header('Content-type: application/json');
 
-        $data = $this->recordRepository->getActiveRecords();
+        $data = $this->recordRepository->getRecords();
 
         return response()->json($data);
     }
