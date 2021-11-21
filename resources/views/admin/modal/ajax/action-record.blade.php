@@ -9,7 +9,7 @@
                     <div class="input-group col-sm-10 mb-3 ">
                         <input type="time" name="myself_time" class="form-control _input_form_for_record"
                                value="{{ Date::parse($record->start)->format('H:i')}}">
-                        <input type="text" name="myself_time" class="form-control" value="{{ $record->title }}">
+                        <input type="text" name="myself_time" class="form-control _input_form_for_record" value="{{ $record->title }}">
                     </div>
                 @else
                     <div class="col-sm-10">

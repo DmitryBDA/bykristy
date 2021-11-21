@@ -86,7 +86,7 @@ class CalendarController extends Controller
         $obRecord = Record::find($recordId);
         $date = Carbon::create($obRecord->start)->format('Y-m-d') . ' ' . $TimeRecord;
 
-        if($arrDataForm[1]['value'] && $arrDataForm[2]['value'] && $arrDataForm[3]['value']){
+        if($arrDataForm[0]['name'] !== 'myself_time' && $arrDataForm[1]['value'] && $arrDataForm[2]['value'] && $arrDataForm[3]['value']){
             $arFio = explode(" ", $arrDataForm[2]['value']);
             $surname = $arFio[0];
             $name = $arFio[1];
@@ -115,6 +115,12 @@ class CalendarController extends Controller
                 'user_id' => $userId,
                 'service_id' => $arrDataForm[1]['value'],
                 'status' => $obRecord->status == 1 ? 3: $obRecord->status,
+            ];
+        }elseif($arrDataForm[0]['name'] === 'myself_time') {
+            $data = [
+                'start' => $date,
+                'end' => $date,
+                'title' => $arrDataForm[1]['value'],
             ];
         } else {
             $data = [
