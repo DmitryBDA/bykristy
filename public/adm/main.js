@@ -317,6 +317,19 @@ $(function () {
 
 
     $(document).on('change', '._input_form_for_record', function (){
+        let arrInput = $('._input_form_for_record');
+
+        let isRequired = false
+        for (i = 1; i < arrInput.length; i++){
+            if($(arrInput[i]).val()){
+                isRequired = true
+            }
+        }
+        if(isRequired){
+            $('._input_form_for_record').attr('required', true)
+        } else {
+            $('._input_form_for_record').attr('required', false)
+        }
         $('._save_change_record').css('display', 'inline')
     })
 

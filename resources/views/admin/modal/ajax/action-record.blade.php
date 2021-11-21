@@ -25,7 +25,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Услуга</label>
                     <div class="col-sm-10">
-                        <select name="service" class="form-control _input_form_for_record" required="">
+                        <select name="service" class="form-control _input_form_for_record">
                             <option value="" selected="">Не выбрано</option>
                             @isset($services)
                                 @foreach($services as $service)

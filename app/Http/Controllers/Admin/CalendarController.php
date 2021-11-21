@@ -83,39 +83,45 @@ class CalendarController extends Controller
 
         $TimeRecord = $arrDataForm[0]['value'];
 
-        $arFio = explode(" ", $arrDataForm[2]['value']);
-        $surname = $arFio[0];
-        $name = $arFio[1];
-        $phone = $arrDataForm[3]['value'];
-        $phone = str_replace(['(', ')', " ", '-'],'', $phone );
-
-        $obUser = User::where('phone', $phone)->get()->first();
-
-        if(empty($obUser)){
-            $lastId = User::orderBy('id', 'desc')->get()->first()->id;
-            $lastId++;
-            $dataUser = [
-                'name' => $name,
-                'surname' => $surname,
-                'phone' => $phone,
-                'password' => Hash::make(Str::random(8)),
-                'email' => "user$lastId@user.com",
-            ];
-            $obUser = User::create($dataUser);
-        }
-        $userId = $obUser->id;
-
         $obRecord = Record::find($recordId);
-
         $date = Carbon::create($obRecord->start)->format('Y-m-d') . ' ' . $TimeRecord;
-        $data = [
-            'start' => $date,
-            'end' => $date,
-            'user_id' => $userId,
-            'service_id' => $arrDataForm[1]['value'],
-            'status' => $obRecord->status == 1 ? 3: $obRecord->status,
-        ];
 
+        if($arrDataForm[1]['value'] && $arrDataForm[2]['value'] && $arrDataForm[3]['value']){
+            $arFio = explode(" ", $arrDataForm[2]['value']);
+            $surname = $arFio[0];
+            $name = $arFio[1];
+            $phone = $arrDataForm[3]['value'];
+            $phone = str_replace(['(', ')', " ", '-'],'', $phone );
+
+            $obUser = User::where('phone', $phone)->get()->first();
+
+            if(empty($obUser)){
+                $lastId = User::orderBy('id', 'desc')->get()->first()->id;
+                $lastId++;
+                $dataUser = [
+                    'name' => $name,
+                    'surname' => $surname,
+                    'phone' => $phone,
+                    'password' => Hash::make(Str::random(8)),
+                    'email' => "user$lastId@user.com",
+                ];
+                $obUser = User::create($dataUser);
+            }
+            $userId = $obUser->id;
+
+            $data = [
+                'start' => $date,
+                'end' => $date,
+                'user_id' => $userId,
+                'service_id' => $arrDataForm[1]['value'],
+                'status' => $obRecord->status == 1 ? 3: $obRecord->status,
+            ];
+        } else {
+            $data = [
+                'start' => $date,
+                'end' => $date,
+            ];
+        }
 
         $obRecord->update($data);
 
